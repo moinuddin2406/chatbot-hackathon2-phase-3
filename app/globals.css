@@ -1,0 +1,429 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card-bg: var(--color-card-bg);
+  --color-card-border: var(--color-card-border);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+}
+
+/* Light theme */
+html.light,
+:root {
+  --color-background: #f8fafc;
+  --color-foreground: #111827;
+  --color-card-bg: #ffffff;
+  --color-card-border: #d1d5db;
+  --color-primary: #38bdf8;
+  --color-primary-hover: #0ea5e9;
+  --color-secondary: #f3f4f6;
+  --color-accent: #38bdf8;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  /* No neon glow for light theme */
+}
+
+/* Dark theme */
+html.dark {
+  --color-background: #0b0b12;
+  --color-foreground: #e5e7eb;
+  --color-card-bg: rgba(30, 30, 40, 0.85);
+  --color-card-border: #475569;
+  --color-primary: #38bdf8;
+  --color-primary-hover: #0ea5e9;
+  --color-secondary: #334155;
+  --color-accent: #38bdf8;
+  --color-text-primary: #e5e7eb;
+  --color-text-secondary: #9ca3af;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --neon-glow: 0 0 15px #38bdf8, 0 0 30px #38bdf8, 0 0 45px #0ea5e9;
+  --neon-glow-intense: 0 0 20px #38bdf8, 0 0 40px #38bdf8, 0 0 60px #0ea5e9;
+  --glassmorphism: rgba(30, 30, 40, 0.4);
+  --glassmorphism-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Emerald theme */
+html.emerald {
+  --color-background: #052e16;
+  --color-foreground: #d1fae5;
+  --color-card-bg: rgba(16, 185, 129, 0.15);
+  --color-card-border: #10b981;
+  --color-primary: #10b981;
+  --color-primary-hover: #059669;
+  --color-secondary: #0f766e;
+  --color-accent: #10b981;
+  --color-text-primary: #d1fae5;
+  --color-text-secondary: #a7f3d0;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --neon-glow: 0 0 15px #10b981, 0 0 30px #10b981;
+  --neon-glow-intense: 0 0 20px #10b981, 0 0 40px #10b981;
+  --glassmorphism: rgba(16, 185, 129, 0.1);
+  --glassmorphism-border: rgba(16, 185, 129, 0.2);
+}
+
+/* Neon Cyberpunk theme */
+html.neon-cyberpunk {
+  --color-background: linear-gradient(135deg, #000000 0%, #1a001a 100%);
+  --color-foreground: #e0e0ff;
+  --color-card-bg: rgba(20, 20, 30, 0.85);
+  --color-card-border: #ff2bd6;
+  --color-primary: #ff2bd6; /* Neon Pink */
+  --color-primary-hover: #7f00ff; /* Neon Purple */
+  --color-secondary: rgba(127, 0, 255, 0.2);
+  --color-accent: #00ffff; /* Cyan */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #c0c0ff;
+  --color-success: #00ff9d; /* Neon Green */
+  --color-danger: #ff2b5c; /* Neon Red */
+  --neon-glow: 0 0 15px #ff2bd6, 0 0 30px #ff2bd6, 0 0 45px #7f00ff;
+  --neon-glow-intense: 0 0 20px #ff2bd6, 0 0 40px #ff2bd6, 0 0 60px #7f00ff;
+  --neon-glow-purple: 0 0 15px #7f00ff, 0 0 30px #7f00ff, 0 0 45px #ff2bd6;
+  --neon-glow-green: 0 0 15px #00ff9d, 0 0 30px #00ff9d;
+  --neon-glow-yellow: 0 0 15px #ffff00, 0 0 30px #ffff00;
+  --glassmorphism: rgba(20, 20, 30, 0.4);
+  --glassmorphism-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Card styles for all themes */
+.card-light {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.card-dark {
+  background: rgba(30, 30, 40, 0.85);
+  border: 1px solid #475569;
+  box-shadow: var(--neon-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card-emerald {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  box-shadow: var(--neon-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card-neon-cyberpunk {
+  background: rgba(20, 20, 30, 0.85);
+  border: 2px solid #ff2bd6;
+  box-shadow: var(--neon-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Enhanced focus styles for accessibility */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline 0.2s ease;
+}
+
+.focus-ring:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Button transitions */
+.btn-transition {
+  transition: all 0.2s ease;
+}
+
+/* Input focus effects */
+.input-focus {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-focus:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(from var(--color-primary) to srgb / 0.1);
+}
+
+/* Neon Cyberpunk specific styles */
+html.neon-cyberpunk body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.neon-card {
+  background: var(--color-card-bg);
+  border: 2px solid var(--color-card-border);
+  box-shadow: var(--neon-glow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.neon-card:hover {
+  box-shadow: var(--neon-glow-intense);
+  transform: scale(1.03);
+}
+
+.neon-button {
+  background: var(--color-primary);
+  color: #000;
+  box-shadow: var(--neon-glow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.neon-button:hover {
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-hover));
+  box-shadow: var(--neon-glow-intense);
+  transform: translateY(-2px);
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
+
+.neon-button-secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--neon-glow);
+  transition: all 0.3s ease;
+}
+
+.neon-button-secondary:hover {
+  box-shadow: var(--neon-glow-intense);
+  background: rgba(255, 43, 214, 0.1);
+}
+
+.neon-text-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-glow {
+  text-shadow: var(--neon-glow);
+}
+
+.neon-glow-purple {
+  text-shadow: var(--neon-glow-purple);
+}
+
+.neon-glow-green {
+  text-shadow: var(--neon-glow-green);
+}
+
+.neon-glow-yellow {
+  text-shadow: var(--neon-glow-yellow);
+}
+
+.neon-input {
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-text-primary);
+  box-shadow: inset 0 0 5px rgba(255, 43, 214, 0.3);
+  transition: all 0.3s ease;
+}
+
+.neon-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 43, 214, 0.3), inset 0 0 10px rgba(255, 43, 214, 0.5);
+}
+
+.neon-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: var(--neon-glow);
+}
+
+.neon-badge-completed {
+  background: rgba(0, 255, 157, 0.1);
+  color: var(--color-success);
+  box-shadow: var(--neon-glow-green);
+}
+
+.neon-badge-pending {
+  background: rgba(255, 255, 0, 0.1);
+  color: #ffff00;
+  box-shadow: var(--neon-glow-yellow);
+}
+
+.neon-badge-progress {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--color-accent);
+  box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+}
+
+/* Animations for dashboard counters */
+.counter-animation {
+  animation: counterAnimation 1s ease-out;
+}
+
+@keyframes counterAnimation {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: var(--neon-glow); }
+  100% { box-shadow: var(--neon-glow-intense); }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Additional neon animations */
+.neon-flicker {
+  animation: neonFlicker 1.5s infinite alternate;
+}
+
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px var(--color-primary),
+      0 0 80px var(--color-primary),
+      0 0 90px var(--color-primary),
+      0 0 100px var(--color-primary),
+      0 0 150px var(--color-primary);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+.neon-pulse {
+  animation: neonPulse 2s infinite;
+}
+
+@keyframes neonPulse {
+  0% { box-shadow: 0 0 5px var(--color-primary); }
+  50% { box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary-hover); }
+  100% { box-shadow: 0 0 5px var(--color-primary); }
+}
+
+.task-add-animation {
+  animation: taskAddAnimation 0.5s ease-out;
+}
+
+@keyframes taskAddAnimation {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.task-delete-animation {
+  animation: taskDeleteAnimation 0.5s ease-out forwards;
+}
+
+@keyframes taskDeleteAnimation {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+}
+
+.neon-hover-grow {
+  transition: all 0.3s ease;
+}
+
+.neon-hover-grow:hover {
+  transform: scale(1.05);
+  box-shadow: var(--neon-glow-intense);
+}
