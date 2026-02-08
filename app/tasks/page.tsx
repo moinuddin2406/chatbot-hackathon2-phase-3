@@ -24,10 +24,10 @@ export default function TasksPage() {
   // Register the callback to trigger task updates from chatbot
   useEffect(() => {
     setTriggerTaskUpdateCallback(fetchTasks);
-    
+
     // Cleanup on unmount
     return () => {
-      setTriggerTaskUpdateCallback(null);
+      setTriggerTaskUpdateCallback(undefined);
     };
   }, [user?.id]);
 
