@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  reactCompiler: false, // Disable reactCompiler to avoid Turbopack issues in some environments
   // Other configuration options can be added here
   experimental: {
     // Other experimental features can be added here
