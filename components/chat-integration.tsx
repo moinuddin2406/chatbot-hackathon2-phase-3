@@ -42,17 +42,20 @@ const ChatIntegration: React.FC = () => {
       // The API expects the user ID in the path: /api/{user_id}/chat (based on OpenAPI spec)
       const response = await apiClient.post(`/api/${user.id}/chat`, { message });
 
+      // Type assertion for the response to access properties safely
+      const responseData = response as { response?: string; tool_calls?: any[] };
+
       // Add AI response
       addMessage({
         role: 'assistant',
-        content: response.response || 'Sorry, I could not process your request.',
+        content: responseData.response || 'Sorry, I could not process your request.',
         timestamp: new Date(),
       });
 
       // Check if the response includes tool calls that affect tasks
-      if (response.tool_calls && Array.isArray(response.tool_calls)) {
+      if (responseData.tool_calls && Array.isArray(responseData.tool_calls)) {
         // Check if any of the tool calls were task-related operations
-        const taskOperations = response.tool_calls.filter((call: any) =>
+        const taskOperations = responseData.tool_calls.filter((call: any) =>
           call && call.name && ['add_task', 'update_task', 'delete_task', 'complete_task'].includes(call.name)
         );
 
