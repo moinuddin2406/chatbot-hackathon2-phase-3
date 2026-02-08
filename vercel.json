@@ -1,10 +1,13 @@
 {
   "version": 2,
+  "framework": "nextjs",
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/next",
-      "config": {}
+      "config": {
+        "distDir": ".next"
+      }
     }
   ],
   "routes": [
@@ -12,5 +15,10 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
 }
