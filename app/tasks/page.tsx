@@ -10,6 +10,7 @@ import EmptyState from '@/components/ui/empty-state';
 import { apiClient } from '@/lib/api';
 import { Task } from '@/lib/types';
 import { normalizeTaskFromAPI, normalizeTasksFromAPI, formatDate } from '@/utils/task-utils';
+import { setTriggerTaskUpdateCallback } from '@/frontend/context/ChatContext';
 
 export default function TasksPage() {
   const { user, signOut } = useAuth();
@@ -19,6 +20,16 @@ export default function TasksPage() {
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
   const [sortBy, setSortBy] = useState<'date' | 'priority'>('date');
   const [loading, setLoading] = useState(true);
+
+  // Register the callback to trigger task updates from chatbot
+  useEffect(() => {
+    setTriggerTaskUpdateCallback(fetchTasks);
+    
+    // Cleanup on unmount
+    return () => {
+      setTriggerTaskUpdateCallback(null);
+    };
+  }, [user?.id]);
 
   useEffect(() => {
     fetchTasks();

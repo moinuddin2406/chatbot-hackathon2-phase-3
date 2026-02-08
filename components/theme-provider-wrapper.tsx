@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from '@/context/theme-context';
 import { AuthProvider } from '@/context/auth-context';
+import { ChatProvider } from '@/frontend/context/ChatContext';
 import { ReactNode, useEffect } from 'react';
 
 export default function ThemeProviderWrapper({ children }: { children: ReactNode }) {
@@ -17,7 +18,9 @@ export default function ThemeProviderWrapper({ children }: { children: ReactNode
   return (
     <ThemeProvider>
       <AuthProvider>
-        {children}
+        <ChatProvider>
+          {children}
+        </ChatProvider>
       </AuthProvider>
     </ThemeProvider>
   );

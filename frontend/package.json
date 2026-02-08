@@ -1,0 +1,15 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd .. && npm run dev",
+    "build": "cd .. && npm run build",
+    "start": "cd .. && npm run start",
+    "lint": "cd .. && npm run lint"
+  },
+  "description": "Frontend application built with Next.js",
+  "keywords": ["nextjs", "react", "frontend"],
+  "author": "Phase 3 Chatbot Project",
+  "license": "MIT"
+}

@@ -1,6 +1,6 @@
-# Frontend UI with Authentication
+# Phase 3 Chatbot - Full Stack Application
 
-This is the frontend for a multi-user Todo web application built with Next.js, TypeScript, Tailwind CSS, and Better Auth.
+This is a full-stack Todo web application built with Next.js for the frontend and FastAPI for the backend. The application features user authentication, task management, and a responsive UI.
 
 ## Features
 
@@ -9,16 +9,30 @@ This is the frontend for a multi-user Todo web application built with Next.js, T
 - Responsive design for mobile, tablet, and desktop
 - JWT-based authentication with secure session management
 - Professional UI/UX design
+- Separate backend API with FastAPI
 
 ## Tech Stack
 
+### Frontend
 - Next.js 16+ (App Router)
 - TypeScript
 - Tailwind CSS
 - Better Auth
 - React 18+
 
+### Backend
+- FastAPI
+- Python
+- SQLModel
+- PostgreSQL (with Neon)
+
 ## Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js and Python installed on your system.
+
+### Frontend Setup
 
 First, install the dependencies:
 
@@ -34,52 +48,57 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-## Environment Variables
+### Backend Setup
 
-Create a `.env.local` file in the root of the `frontend` directory and add the following:
+Navigate to the backend directory and install Python dependencies:
 
-```env
-NEXT_PUBLIC_API_BASE_URL=https://moinminhal-hack2-phase2.hf.space
-NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
+```bash
+cd backend
+pip install -r requirements.txt
 ```
 
-For local development with a backend running on localhost, use:
+Run the backend server:
 
-```env
-NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
-NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
+```bash
+uvicorn main:app --reload
 ```
 
 ## Project Structure
 
 ```text
-frontend/
-├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── login/              # Login page
-│   │   ├── signup/             # Signup page
-│   │   ├── dashboard/          # Dashboard page
-│   │   ├── tasks/              # Tasks page and sub-pages
-│   │   │   ├── new/            # Create task page
-│   │   │   └── [id]/           # Edit task page
-│   │   └── layout.tsx          # Root layout
-│   ├── components/             # Reusable UI components
-│   │   ├── auth/               # Authentication components
-│   │   ├── tasks/              # Task management components
-│   │   ├── ui/                 # General UI components
-│   │   └── navigation/         # Navigation components
-│   ├── lib/                    # Utility functions and API client
-│   │   ├── api.ts              # Centralized API client
-│   │   ├── auth.ts             # Authentication utilities
-│   │   └── types.ts            # TypeScript type definitions
-│   ├── context/                # React context providers
-│   │   └── auth-context.tsx    # Authentication state management
-│   ├── styles/                 # Global styles
-│   │   └── globals.css         # Tailwind and custom styles
-│   └── hooks/                  # Custom React hooks
-│       └── use-toast.ts        # Toast notification hook
+.
+├── app/                        # Next.js App Router pages
+│   ├── login/                  # Login page
+│   ├── signup/                 # Signup page
+│   ├── dashboard/              # Dashboard page
+│   ├── tasks/                  # Tasks page and sub-pages
+│   │   ├── new/                # Create task page
+│   │   └── [id]/               # Edit task page
+│   └── layout.tsx              # Root layout
+├── components/                 # Reusable UI components
+│   ├── auth/                   # Authentication components
+│   ├── tasks/                  # Task management components
+│   ├── ui/                     # General UI components
+│   └── navigation/             # Navigation components
+├── context/                    # React context providers
+│   └── auth-context.tsx        # Authentication state management
 ├── public/                     # Static assets
-└── tests/                      # Test files
+├── backend/                    # FastAPI backend application
+│   ├── main.py                 # Main application entry point
+│   ├── models/                 # Database models
+│   ├── routes/                 # API routes
+│   └── auth/                   # Authentication logic
+├── frontend/                   # Frontend documentation and scripts
+└── README.md                   # This file
+```
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory and add the following:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
+NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 ```
 
 ## Learn More
@@ -90,3 +109,5 @@ To learn more about the technologies used in this project:
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Better Auth Documentation](https://www.better-auth.com/docs)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [SQLModel Documentation](https://sqlmodel.tiangolo.com/)

@@ -8,6 +8,26 @@ from db import create_db_and_tables
 import os
 import hashlib
 
+# Import chat routes
+CHAT_ROUTES_AVAILABLE = False
+try:
+    # Import the chat routes regardless of some configuration issues
+    # The database configuration should be available from the main config
+    print("Attempting to import chat routes...")
+    from chatbot.routes.chat_routes import router as chat_router
+    CHAT_ROUTES_AVAILABLE = True
+    print("Chat routes loaded successfully")
+except ImportError as e:
+    print(f"ImportError: Chat routes not available due to import error: {str(e)}")
+    import traceback
+    traceback.print_exc()
+    CHAT_ROUTES_AVAILABLE = False
+except Exception as e:
+    print(f"General Error: Chat routes not available due to error: {str(e)}")
+    import traceback
+    traceback.print_exc()
+    CHAT_ROUTES_AVAILABLE = False
+
 # Create the FastAPI application instance
 app = FastAPI(
     title="JWT-Protected Todo API",
@@ -36,6 +56,10 @@ app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 # Include the task routes with the proper prefix
 app.include_router(tasks.router, prefix="/api/{user_id}", tags=["tasks"])
+
+# Include the chat routes if available
+if CHAT_ROUTES_AVAILABLE:
+    app.include_router(chat_router, prefix="/api", tags=["chat"])
 
 @app.get("/")
 def read_root():
