@@ -84,9 +84,9 @@ interface ChatProviderProps {
 }
 
 // Global callback to trigger UI updates (will be set by the TasksPage)
-let triggerTaskUpdateCallback: (() => void) | null | undefined = null;
+let triggerTaskUpdateCallback: (() => void) | null = null;
 
-export const setTriggerTaskUpdateCallback = (callback: (() => void) | null | undefined) => {
+export const setTriggerTaskUpdateCallback = (callback: (() => void) | null) => {
   triggerTaskUpdateCallback = callback;
 };
 

@@ -27,7 +27,7 @@ export default function TasksPage() {
 
     // Cleanup on unmount
     return () => {
-      setTriggerTaskUpdateCallback(undefined);
+      setTriggerTaskUpdateCallback(null);
     };
   }, [user?.id]);
 
