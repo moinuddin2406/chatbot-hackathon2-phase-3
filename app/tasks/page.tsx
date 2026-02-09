@@ -10,11 +10,12 @@ import EmptyState from '@/components/ui/empty-state';
 import { apiClient } from '@/lib/api';
 import { Task } from '@/lib/types';
 import { normalizeTaskFromAPI, normalizeTasksFromAPI, formatDate } from '@/utils/task-utils';
-import { setTriggerTaskUpdateCallback } from '@/frontend/context/ChatContext';
+import { useChat } from '@/frontend/context/ChatContext';
 
 export default function TasksPage() {
   const { user, signOut } = useAuth();
   const router = useRouter();
+  const { setTriggerTaskUpdateCallback } = useChat(); // Get the setter from context
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');

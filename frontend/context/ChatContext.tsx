@@ -74,6 +74,7 @@ interface ChatContextType {
   setOpen: (open: boolean) => void;
   clearMessages: () => void;
   triggerTaskUpdate: () => void; // Function to trigger UI updates
+  setTriggerTaskUpdateCallback: (callback: (() => void) | null) => void; // Expose setter in context
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -83,15 +84,15 @@ interface ChatProviderProps {
   children: ReactNode;
 }
 
-// Global callback to trigger UI updates (will be set by the TasksPage)
-let triggerTaskUpdateCallback: (() => void) | null = null;
-
-export const setTriggerTaskUpdateCallback = (callback: (() => void) | null) => {
-  triggerTaskUpdateCallback = callback;
-};
-
 export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(chatReducer, initialState);
+  
+  // Store the callback in state or ref
+  const taskUpdateCallbackRef = React.useRef<(() => void) | null>(null);
+
+  const setTriggerTaskUpdateCallback = (callback: (() => void) | null) => {
+    taskUpdateCallbackRef.current = callback;
+  };
 
   const addMessage = (messageWithoutId: Omit<Message, 'id'>) => {
     const message: Message = {
@@ -118,8 +119,8 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   };
 
   const triggerTaskUpdate = () => {
-    if (triggerTaskUpdateCallback) {
-      triggerTaskUpdateCallback();
+    if (taskUpdateCallbackRef.current) {
+      taskUpdateCallbackRef.current();
     }
   };
 
@@ -131,6 +132,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     setOpen,
     clearMessages,
     triggerTaskUpdate,
+    setTriggerTaskUpdateCallback,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
