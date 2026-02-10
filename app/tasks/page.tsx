@@ -26,13 +26,10 @@ export default function TasksPage() {
   useEffect(() => {
     setTriggerTaskUpdateCallback(fetchTasks);
 
-    // Define a no-op function for cleanup
-    const noop = () => {};
-
     // Cleanup on unmount
     return () => {
-      // Fixed: Using noop function instead of null to prevent TypeScript error
-      setTriggerTaskUpdateCallback(noop);
+      // Using inline arrow function to prevent TypeScript error
+      setTriggerTaskUpdateCallback(() => {});
     };
   }, [user?.id]);
 
