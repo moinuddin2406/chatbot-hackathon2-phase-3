@@ -31,6 +31,7 @@ export default function TasksPage() {
 
     // Cleanup on unmount
     return () => {
+      // Fixed: Using noop function instead of null to prevent TypeScript error
       setTriggerTaskUpdateCallback(noop);
     };
   }, [user?.id]);
