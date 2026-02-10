@@ -28,8 +28,8 @@ export default function TasksPage() {
 
     // Cleanup on unmount
     return () => {
-      // Using inline arrow function to prevent TypeScript error
-      setTriggerTaskUpdateCallback(() => {});
+      // Setting to undefined on cleanup to prevent memory leaks
+      setTriggerTaskUpdateCallback(undefined);
     };
   }, [user?.id]);
 

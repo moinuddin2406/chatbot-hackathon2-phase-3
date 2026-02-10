@@ -74,7 +74,7 @@ interface ChatContextType {
   setOpen: (open: boolean) => void;
   clearMessages: () => void;
   triggerTaskUpdate: () => void; // Function to trigger UI updates
-  setTriggerTaskUpdateCallback: (callback: (() => void) | null) => void; // Expose setter in context
+  setTriggerTaskUpdateCallback: (callback: (() => void) | null | undefined) => void; // Expose setter in context
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -88,9 +88,9 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(chatReducer, initialState);
   
   // Store the callback in state or ref
-  const taskUpdateCallbackRef = React.useRef<(() => void) | null>(null);
+  const taskUpdateCallbackRef = React.useRef<(() => void) | null | undefined>(null);
 
-  const setTriggerTaskUpdateCallback = (callback: (() => void) | null) => {
+  const setTriggerTaskUpdateCallback = (callback: (() => void) | null | undefined) => {
     taskUpdateCallbackRef.current = callback;
   };
 
